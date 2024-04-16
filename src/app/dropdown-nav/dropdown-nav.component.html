@@ -12,7 +12,7 @@
           <span>{{ selectedRoute.label }}</span>
         </div>
       </ngb-alert>
-      <div ngbAccordion class="custom-accordion" *ngIf="showMenu">
+      <div ngbAccordion [closeOthers]="true" class="custom-accordion" *ngIf="showMenu">
         <div
           ngbAccordionItem
           *ngFor="let route of routes"
