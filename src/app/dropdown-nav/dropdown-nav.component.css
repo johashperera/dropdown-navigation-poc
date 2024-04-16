@@ -1,0 +1,37 @@
+.alert-custom {
+  background-color: #F7FBF0;
+  margin-bottom: 0;
+  border: 1px solid #9CCB3B;
+}
+
+.custom-accordion {
+  border: none !important;
+}
+
+.custom-accordion-header {
+  padding: 1rem;
+}
+
+.selected-item {
+  background-color: #F7FBF0;
+}
+
+.subRoute-btn {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: small;
+}
+
+@keyframes rotate180 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.rotate-180 {
+  animation: rotate180 0.3s forwards;
+}

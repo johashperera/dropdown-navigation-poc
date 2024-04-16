@@ -1,0 +1,81 @@
+<div class="w-100" style="box-shadow: 0px 2px 4px 0px #00000014">
+  <div class="row p-3">
+    <div class="col-11">
+      <ngb-alert
+        *ngIf="!showMenu"
+        type="custom"
+        [dismissible]="false"
+        class="alert-custom"
+      >
+        <div class="d-flex gap-1">
+          <span><hlc-form-incomplete></hlc-form-incomplete></span>
+          <span>{{ selectedRoute.label }}</span>
+        </div>
+      </ngb-alert>
+      <div ngbAccordion class="custom-accordion" *ngIf="showMenu">
+        <div
+          ngbAccordionItem
+          *ngFor="let route of routes"
+          [collapsed]="true"
+          [ngClass]="{
+            'selected-item': route.routerLink === selectedRoute.routerLink
+          }"
+        >
+          <div
+            ngbAccordionHeader
+            class="custom-accordion-header"
+            *ngIf="!route.hasChildRoutes"
+            (click)="setSelectedRoute(route)"
+          >
+            <div class="d-flex gap-1">
+              <span><hlc-form-incomplete></hlc-form-incomplete></span>
+              <span>{{ route.label }}</span>
+            </div>
+          </div>
+          <h2 ngbAccordionHeader *ngIf="route.hasChildRoutes">
+            <button
+              ngbAccordionButton
+              class="custom-accordion-header"
+              [ngClass]="{
+                'selected-item': route.routerLink === selectedRoute.routerLink
+              }"
+              (click)="setSubRoutes(route.testId)"
+            >
+              <div class="d-flex gap-1">
+                <span><hlc-form-incomplete></hlc-form-incomplete></span>
+                <span>{{ route.label }}</span>
+              </div>
+            </button>
+          </h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template
+                ><ul class="list-group">
+                  <li
+                    *ngFor="let subRoute of subRoutes"
+                    class="list-group-item"
+                  >
+                    <button
+                      class="d-flex gap-1 subRoute-btn"
+                      (click)="setSelectedRoute(subRoute)"
+                    >
+                      <span><hlc-form-incomplete style="height: 16px; width: 16px"></hlc-form-incomplete></span>
+                      <span>{{ subRoute.label }}</span>
+                    </button>
+                  </li>
+                </ul></ng-template
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1">
+      <button class="btn btn-light" style="height: 60px" (click)="toggleMenu()">
+        <div [ngClass]="{'rotate-180': showMenu}"
+          ><i class="ri-arrow-down-s-line"></i
+        ></div>
+      </button>
+    </div>
+  </div>
+</div>
